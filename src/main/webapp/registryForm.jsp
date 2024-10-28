@@ -7,6 +7,15 @@
     <title><s:text name="form.title.message"/></title>
     <s:head/>
     <sx:head/>
+    <script type="text/javascript">
+        function calcularTotal() {
+            const grossAmount = parseFloat(document.getElementById("grossAmount").value) || 0;
+            const taxRate = parseFloat(document.getElementById("taxRate").value) || 0;
+
+            const totalAmount = grossAmount + (grossAmount * taxRate / 100);
+            document.getElementById("totalAmount").value = totalAmount.toFixed(2);
+        }
+    </script>
 </head>
 <body>
 
@@ -38,7 +47,19 @@
             <td class="evenRow">
                 <s:fielderror fieldName="invoiceBean.grossAmount"/>
                 <s:text name="form.grossAmount.message"/>
-                <s:textfield id="grossAmount" name="invoiceBean.grossAmount"/>
+                <s:textfield id="grossAmount" name="invoiceBean.grossAmount" onkeyup="calcularTotal()"/>
+            </td>
+        </tr>
+        <tr>
+            <td class="evenRow">
+                <s:text name="form.taxRate.message"/>
+                <s:select id="taxRate" name="invoiceBean.taxRate" list="#{'0':'0%', '5':'5%', '10':'10%', '21':'21%'}" onchange="calcularTotal()"/>
+            </td>
+        </tr>
+        <tr>
+            <td class="evenRow">
+                <s:text name="form.totalAmount.message"/>
+                <s:textfield id="totalAmount" name="invoiceBean.totalAmount" readonly="true"/>
             </td>
         </tr>
         <tr>
