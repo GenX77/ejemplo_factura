@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Invoice Summary</title>
+    <title>Resumen de la factura</title>
 </head>
 <body>
 
